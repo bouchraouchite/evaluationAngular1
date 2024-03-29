@@ -1,0 +1,28 @@
+
+<form style="width: 50%; margin: 2rem auto">
+   
+    <div class="mb-3">
+      <label for="titre" class="form-label">Titre formation</label>
+      <input type="text" class="form-control" id="titre" name="titre"
+      [(ngModel)]="newFormation.titre"
+      />
+    </div>
+  
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input type="text" class="form-control" id="description" name="description" 
+       [(ngModel)]="newFormation.description"/>
+    </div>
+    <div class="mb-3">
+        <label for="date" class="form-label">Date Début </label>
+        <input type="date" class="form-control" id="dateDebut" name="dateDebut" 
+        [(ngModel)]="newFormation.dateDebut" />
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Date fin </label>
+        <input type="date" class="form-control" id="dateFin" name="dateFin" 
+        [(ngModel)]="newFormation.dateFin" />
+      </div>
+    <button (click)="addformation()"  type="submit" class="btn btn-success">Ajouter</button>
+  </form>
+  

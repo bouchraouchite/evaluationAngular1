@@ -1,0 +1,27 @@
+<div class="container">
+  <h2 class="my-4">Ajouter un nouvel adhérent</h2>
+  <form (ngSubmit)="onSubmit()">
+  
+    <div class="mb-3">
+      <label for="nom" class="form-label">Nom</label>
+      <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="newAdherant.nom" placeholder="Entrez le nom de l'Adhérent" required>
+    </div>
+    <div class="mb-3">
+      <label for="prenom" class="form-label">Prénom</label>
+      <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="newAdherant.prenom" placeholder="Entrez le prénom de l'adhérent" required>
+    </div>
+    <div class="mb-3">
+      <label for="contact" class="form-label">Contact</label>
+      <input type="text" class="form-control" id="contact" name="contact" [(ngModel)]="newAdherant.contact" placeholder="Entrez le contact de l'adhérent" required>
+    </div>
+    <div class="mb-3">
+      <label for="formation" class="form-label">Formation</label>
+      <select class="form-select" id="formationId" name="formationId" [(ngModel)]="newAdherant.formation.id" required>
+        <option selected disabled>Choisissez une formation</option>
+        <option *ngFor="let formation of formations" [value]="formation.id">{{ formation.titre }}</option>
+      </select>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Ajouter Adhérent</button>
+  </form>
+</div>

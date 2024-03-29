@@ -1,0 +1,77 @@
+<br>
+<div>
+  <form class="d-flex" (submit)="search()">
+    <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search" [(ngModel)]="searchTerm" name="search" style="width: 300px;">
+    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+  </form>
+  
+</div>
+<br>
+<div>
+<a href="/ajouterformation" class="btn btn-success ">Ajouter Formation</a>
+</div>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID Formation</th>
+      <th scope="col">Titre formation</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date début</th>
+      <th scope="col">Date Fin</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let formation of formationData">
+      <td>{{ formation.id }}</td>
+      <td>{{ formation.titre }}</td>
+      <td>{{ formation.description }}</td>
+      <td>{{ formation.dateDebut | date }}</td>
+      <td>{{ formation.dateFin | date }}</td>
+      <td style="display: flex; gap: 10px; justify-content: space-around; align-items: center;">
+        <button (click)="onDelete(formation.id)" class="btn btn-danger">Supprimer</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + formation.id">
+          Modifier
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngFor="let formation of formationData">
+  <div class="modal fade" id="exampleModal{{ formation.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier la formation</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form style="width: 50%; margin: 2rem auto">
+            <div class="mb-3">
+              <label for="titre" class="form-label">Titre formation</label>
+              <input type="text" class="form-control" id="titre" name="titre" [(ngModel)]="editedFormation.titre">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input type="text" class="form-control" id="description" name="description" [(ngModel)]="editedFormation.description">
+            </div>
+            <div class="mb-3">
+              <label for="dateDebut" class="form-label">Date Début</label>
+              <input type="date" class="form-control" id="dateDebut" name="dateDebut" [(ngModel)]="editedFormation.dateDebut">
+            </div>
+            <div class="mb-3">
+              <label for="dateFin" class="form-label">Date fin</label>
+              <input type="date" class="form-control" id="dateFin" name="dateFin" [(ngModel)]="editedFormation.dateFin">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary" (click)="updateFormation(formation.id)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
